@@ -23,7 +23,7 @@ android {
     }
 
     //free paid
-    flavorDimensions("team")
+    flavorDimensions += "team"
     productFlavors{
         create("dev"){
 
@@ -52,7 +52,14 @@ android {
         }
 
         create("QA"){
-            isMinifyEnabled=false
+            isMinifyEnabled=true
+
+            isShrinkResources=true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+
+            )
             isDebuggable =true
             buildConfigField("String","json","\"quotesQA.json\"")
             signingConfig = signingConfigs.getByName("debug")
